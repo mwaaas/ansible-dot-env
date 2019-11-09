@@ -11,7 +11,7 @@
 
 - name: ensure environment file is populated with key = values
   lineinfile: dest="{{ dot_env_file_path }}" line="{{ key }}{{ dot_env_key_value_separator }}{{ lookup('vars', key) }}" insertafter="EOF" create="{{ dot_env_file_create }}" state=present
-  when: "item.key is upper"
+  when: "key is upper"
   with_items: "{{ vars.keys() }}"
 
 - name: add banner message if environment file was purged or newly created
